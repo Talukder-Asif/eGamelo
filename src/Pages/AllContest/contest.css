@@ -1,0 +1,25 @@
+.pagination{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.pagination button{
+    margin-right: 10px;
+}
+.pagination .notselect {
+    padding: 5px 10px;
+    border: 2px solid #1b1d4d;
+    font-weight: 700;
+    color: #1b1d4d;
+    background-color: #faf7f2;
+    border-radius: 5px;
+}
+.pagination .selected {
+    
+    padding: 5px 10px;
+    background-color: #1b1d4d;
+    border: 2px solid #1b1d4d;
+    color: white;
+    font-weight: 700;
+    border-radius: 5px;
+
+}
