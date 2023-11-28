@@ -33,6 +33,13 @@ const WinningContest = () => {
       </div>
     );
   }
+  if(mySubmit?.length <= 0){
+    return (
+      <h1 className="text-3xl text-center my-4 font-extrabold dark:text-white">
+          No win contest
+        </h1>
+    )
+  }
   return (
     <div className="overflow-x-auto">
       <table className="table">
@@ -43,13 +50,15 @@ const WinningContest = () => {
               <label>#</label>
             </th>
             <th>Contest Name</th>
-            <th>Participant</th>
+            <th>Result</th>
             <th>Prize Money</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {mySubmit?.map((contest, i) => (
+          {mySubmit?.map((contest, i) => 
+         ( 
+            Date.parse(contest?.contestDeadline) - Date.now() < 0?
             <tr key={i}>
               <th>
                 <label>{i + 1}</label>
@@ -70,7 +79,7 @@ const WinningContest = () => {
                 </div>
               </td>
               <td>
-                {contest?.participation} Person
+                {contest?.result}
               </td>
               <td>
                 {contest?.prizeMoney} Taka
@@ -87,7 +96,9 @@ const WinningContest = () => {
                 </div>
               </th>
             </tr>
-          ))}
+            :null
+          )
+          )}
         </tbody>
       </table>
     </div>

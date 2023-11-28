@@ -10,125 +10,106 @@ const Payment = () => {
   const Id = useParams().id;
   const [contest, isContestLoading] = useContestById(Id);
   const [User, isUserLoading, refetch] = useUserDetails();
-    const axiosPublic = useAxios()
+  const axiosPublic = useAxios();
 
-
-    const submited = User?.Contest?.find(ab => ab?.contestID === contest?._id);
-    // submited? console.log("Found") : console.log("Not");
+  const submited = User?.Contest?.find((ab) => ab?.contestID === contest?._id);
+  // submited? console.log("Found") : console.log("Not");
   const handelSubmit = (e) => {
     e.preventDefault();
     const TrxID = e.target.TrxID.value;
-    if(TrxID.length !== 10){
-        Swal.fire({
-            icon: "error",
-            title: "Invalid TrxID",
-            showConfirmButton: false,
-            timer: 1500
-          });
-          return
+    if (TrxID.length !== 10) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid TrxID",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
     }
     const ContestPert = {
-        name:contest.name,
-        image:contest.image,
-        TrxID,
-        result:"No Result",
-        contestDeadline: contest.contestDeadline,
-        contestID: contest._id,
-        instruction: contest.instruction,
-        participation: parseInt(contest.participation) + 1,
-        prizeMoney: contest.prizeMoney,
+      name: contest.name,
+      image: contest.image,
+      TrxID,
+      result: "No Result",
+      contestDeadline: contest.contestDeadline,
+      contestID: contest._id,
+      instruction: contest.instruction,
+      participation: parseInt(contest.participation) + 1,
+      prizeMoney: contest.prizeMoney,
     };
-// Updating UserAPI
+    // Updating UserAPI
     const updateUser = {
-        name: User?.name,
-        email: User?.email,
-        role: User?.role,
-        photo: User?.photo,
-        Contest:[...User.Contest, ContestPert],
-      }
-      axios.put(`http://localhost:5000/user/${User?.email}`, updateUser)
-      .then(res=> {
-        if(res.data.modifiedCount > 0){
-            // refetch();
-            // Swal.fire({
-            //     icon: "success",
-            //     title: `${User.name} is an contestCreator Now!`,
-            //     showConfirmButton: false,
-            //     timer: 1500
-            //   });
+      name: User?.name,
+      email: User?.email,
+      role: User?.role,
+      photo: User?.photo,
+      Contest: [...User.Contest, ContestPert],
+    };
+    axios
+      .put(`http://localhost:5000/user/${User?.email}`, updateUser)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          // refetch();
+          // Swal.fire({
+          //     icon: "success",
+          //     title: `${User.name} is an contestCreator Now!`,
+          //     showConfirmButton: false,
+          //     timer: 1500
+          //   });
         }
       });
 
-// Update Contest API
-const updateContest = {
-    name: contest.name,
-    image: contest.image,
-    contestPrice: contest.contestPrice,
-    prizeMoney: contest.prizeMoney,
-    details: contest.details,
-    instruction: contest.instruction,
-    contestCreator: contest.contestCreator,
-    createdBy: contest.createdBy,
-    tag: contest.tag,
-    status: contest.status,
-    participation: parseInt(contest.participation) + 1,
-    contestDeadline: contest.contestDeadline,
-  };
-  
-    axiosPublic.put(`/contest/${contest?._id}`, updateContest)
-      .then((res) => {
-            if (res.data.modifiedCount > 0) {
-                //   refetch();
-                //   Swal.fire({
-                //         icon: "success",
-                //         title: `${contest.name} is Approve Now!`,
-                //         showConfirmButton: false,
-                //         timer: 1500,
-                //       });
-                    }
-                  });
+    // Update Contest API
+    const updateContest = {
+      name: contest.name,
+      image: contest.image,
+      contestPrice: contest.contestPrice,
+      prizeMoney: contest.prizeMoney,
+      details: contest.details,
+      instruction: contest.instruction,
+      contestCreator: contest.contestCreator,
+      createdBy: contest.createdBy,
+      tag: contest.tag,
+      status: contest.status,
+      participation: parseInt(contest.participation) + 1,
+      contestDeadline: contest.contestDeadline,
+    };
 
-// Add Submit data to the Server
+    axiosPublic.put(`/contest/${contest?._id}`, updateContest).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        //   refetch();
+        //   Swal.fire({
+        //         icon: "success",
+        //         title: `${contest.name} is Approve Now!`,
+        //         showConfirmButton: false,
+        //         timer: 1500,
+        //       });
+      }
+    });
+
+    // Add Submit data to the Server
     const submitData = {
-        userName:User.name,
-        userImg: User.photo,
-        userEmail: User.email,
-        userResult:"Not Win",
-        contestName: contest.name,
-        contestImg: contest.image,
-        contestID: contest._id,
-        TrxID
-    }
-        axiosPublic.post(`/submit`, submitData)
-      .then((res) => {
-            if (res.data.acknowledged === true) {
-                refetch();
-                  Swal.fire({
-                        icon: "success",
-                        title: `Submit Successfully`,
-                        showConfirmButton: false,
-                        timer: 1500,
-                      });
-                    }
-                  });
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-};
+      userName: User.name,
+      userImg: User.photo,
+      userEmail: User.email,
+      userResult: "Not Win",
+      contestName: contest.name,
+      contestImg: contest.image,
+      contestID: contest._id,
+      TrxID,
+    };
+    axiosPublic.post(`/submit`, submitData).then((res) => {
+      if (res.data.acknowledged === true) {
+        refetch();
+        Swal.fire({
+          icon: "success",
+          title: `Submit Successfully`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
   if (isContestLoading || isUserLoading) {
     return (
       <div className="h-screen w-screen grid content-center justify-center">
@@ -196,44 +177,45 @@ const updateContest = {
           </div>
         </div>
       </div>
-      {
-        submited? <h1 className="text-5xl text-center mb-4 font-extrabold dark:text-white">
-            You Are Already Registered
-          </h1> :
+      {submited ? (
+        <h1 className="text-5xl text-center mb-4 font-extrabold dark:text-white">
+          You Are Already Registered
+        </h1>
+      ) : (
         <div className="my-5 px-3">
-        <h3 className="text-3xl md:text-4xl font-bold text-[#111827]">
-          Confirm Payment
-        </h3>
-        <div className="md:grid grid-cols-2 gap-5">
-          <p className="text-lg font-semibold">
-            Send Money on 01885049289 Personal Bkash account and to confirm your
-            Payment, Give your 10 digit TrxID and Click submit, Admin will check
-            your information as soon as possible.
-          </p>
+          <h3 className="text-3xl md:text-4xl font-bold text-[#111827]">
+            Confirm Payment
+          </h3>
+          <div className="md:grid grid-cols-2 gap-5">
+            <p className="text-lg font-semibold">
+              Send Money on 01885049289 Personal Bkash account and to confirm
+              your Payment, Give your 10 digit TrxID and Click submit, Admin
+              will check your information as soon as possible.
+            </p>
 
-          <form
-            onSubmit={handelSubmit}
-            className="flex border-2 border-black p-2 justify-evenly items-end flex-wrap space-y-2"
-          >
-            <div>
-              <label>Your TrxID</label>
-              <input
-                type="text"
-                name="TrxID"
-                placeholder="TrxID EX: AKO2SG9PJO"
-                className="input input-bordered input-error w-full max-w-xs"
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn border-2 border-[#eb0029] text-white bg-[#eb0029] hover:bg-white hover:text-[#eb0029] font-medium rounded-lg text-base dark:bg-red-600 dark:hover:bg-red-700  dark:focus:ring-red-900"
+            <form
+              onSubmit={handelSubmit}
+              className="flex border-2 border-black p-2 justify-evenly items-end flex-wrap space-y-2"
             >
-              Submit
-            </button>
-          </form>
+              <div>
+                <label>Your TrxID</label>
+                <input
+                  type="text"
+                  name="TrxID"
+                  placeholder="TrxID EX: AKO2SG9PJO"
+                  className="input input-bordered input-error w-full max-w-xs"
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn border-2 border-[#eb0029] text-white bg-[#eb0029] hover:bg-white hover:text-[#eb0029] font-medium rounded-lg text-base dark:bg-red-600 dark:hover:bg-red-700  dark:focus:ring-red-900"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-      }
+      )}
     </div>
   );
 };

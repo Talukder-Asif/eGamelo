@@ -19,7 +19,7 @@ import ContestDetails from "../Pages/ContestDetails/ContestDetails";
 import Payment from "../Pages/Payment/Payment";
 import ParticipentContest from "../Pages/RoleManagment/User/ParticipantContest/ParticipentContest";
 import WinningContest from "../Pages/RoleManagment/User/WinningContest/WinningContest";
-import Submission from "../Pages/RoleManagment/ContentCreator/UpdateContest/Submission/Submission";
+import Submission from "../Pages/RoleManagment/ContentCreator/Submission/Submission";
 
 export const router = createBrowserRouter([
   {

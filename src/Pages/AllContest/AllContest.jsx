@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./contest.css";
-import ContextCard from "../RoleManagment/ContentCreator/UpdateContest/Submission/Sheard/ContextCard";
+import ContextCard from "../../Components/Sheard/ContextCard";
 import useAxios from "../../Hooks/useAxios";
 import PageName from "../../Components/PageName";
 import "react-tabs/style/react-tabs.css";

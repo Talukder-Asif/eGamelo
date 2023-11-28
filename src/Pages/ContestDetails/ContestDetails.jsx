@@ -2,12 +2,18 @@ import { useParams } from "react-router-dom";
 import useContestById from "../../Hooks/useContestById";
 import FormBTN from "../../Components/FormBTN";
 import App from "../../Components/Coundown/App";
+import useSubmit from "../../Hooks/useSubmit";
 
 const ContestDetails = () => {
   const Id = useParams().id;
   const [contest, isContestLoading] = useContestById(Id);
   const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
   const remainingTime = Date.parse(contest?.contestDeadline) / 1000 - stratTime;
+console.log(contest)
+const [submit] = useSubmit(Id)
+const winnerDetails = submit?.find(data => data?.userResult === "Win")
+
+
 
   if (isContestLoading) {
     return (
@@ -93,40 +99,30 @@ const ContestDetails = () => {
 
         {remainingTime >= 0 ? null : (
           <div className="overflow-x-auto border-2 px-4 border-black mt-5">
-          <h2 className="my-5 text-xl font-semibold">Top 10 winners</h2>
+          <h2 className="my-5 text-xl font-semibold">This Contest Winners</h2>
             <table className="table">
               {/* head */}
               <thead>
                 <tr>
-                  <th>
-                    <label>
-                      #
-                    </label>
-                  </th>
                   <th>Name</th>
                 </tr>
               </thead>
               <tbody>
                 {/* row 1 */}
                 <tr>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
                   <td>
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <img
-                            src="/tailwind-css-component-profile-2@56w.png"
+                            src={winnerDetails.userImg}
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                        <div className="text-sm opacity-50">United States</div>
+                        <div className="font-bold">{winnerDetails.userName}</div>
+                        <div className="text-sm opacity-50">{winnerDetails.userEmail}</div>
                       </div>
                     </div>
                   </td>

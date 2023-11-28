@@ -103,6 +103,13 @@ if(User?.role==="contestCreator"){
       </div>
     );
   }
+  if(Users?.length <= 0){
+    return (
+      <h1 className="text-3xl text-center my-4 font-extrabold dark:text-white">
+          No User yet
+        </h1>
+    )
+  }
   return (
     <div className="overflow-x-auto">
       <table className="table">
