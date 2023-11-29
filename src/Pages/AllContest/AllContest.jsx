@@ -14,7 +14,7 @@ const AllContest = () => {
 
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage, setItemsPerPage] = useState(9);
   const numberOfPages = Math.ceil(totalItems / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
   const [pageLoad, setPageLoad] = useState(true);
@@ -202,42 +202,7 @@ const AllContest = () => {
   return (
     <div>
       <PageName pageName={"All Contest"}></PageName>
-      {/* <div className="w-3/4 max-w-4xl m-auto my-10">
-        <form onSubmit={handleSearch}>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                />
-              </svg>
-            </div>
-            <input
-              type="search"
-              name="search"
-              id="default-search"
-              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-[#1b1d4d] rounded-lg bg-gray-50  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search with Contest tag name..."
-              required
-            />
-            <button
-              type="submit"
-              className="absolute right-2.5 bottom-2 focus:ring-4 focus:outline-none focus:ring-[#1b1d4d63] font-medium rounded-lg text-sm px-4 py-2 border-2 border-[#1b1d4d] text-white bg-[#1b1d4d] hover:bg-white hover:text-[#1b1d4d]  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-            >
-              Search
-            </button>
-          </div>
-        </form>
-      </div> */}
+      
 
       <Tabs
         className={"mt-10 text-center font-semibold"}
@@ -289,7 +254,7 @@ const AllContest = () => {
         <TabPanel className={'pb-6'}>
           <ContextCard ContextData={Contest}></ContextCard>
 
-          {totalItems > 10 ? (
+          {totalItems > 9 ? (
             <div className="pagination ">
               {pages.map((page) => (
                 <button
@@ -306,7 +271,7 @@ const AllContest = () => {
         <TabPanel className={'-mt-10 pb-6'}>
           <ContextCard ContextData={Contest}></ContextCard>
 
-          {totalItems > 10 ? (
+          {totalItems > 9 ? (
             <div className="pagination ">
               {pages.map((page) => (
                 <button
@@ -323,7 +288,7 @@ const AllContest = () => {
         <TabPanel className={'-mt-10 pb-6'}>
           <ContextCard ContextData={Contest}></ContextCard>
 
-          {totalItems > 10 ? (
+          {totalItems > 9 ? (
             <div className="pagination ">
               {pages.map((page) => (
                 <button
@@ -340,7 +305,7 @@ const AllContest = () => {
         <TabPanel className={'-mt-10 pb-6'}>
           <ContextCard ContextData={Contest}></ContextCard>
 
-          {totalItems > 10 ? (
+          {totalItems > 9 ? (
             <div className="pagination ">
               {pages.map((page) => (
                 <button
@@ -357,7 +322,7 @@ const AllContest = () => {
         <TabPanel className={'-mt-10 pb-6'}>
           <ContextCard ContextData={Contest}></ContextCard>
 
-          {totalItems > 10 ? (
+          {totalItems > 9 ? (
             <div className="pagination ">
               {pages.map((page) => (
                 <button

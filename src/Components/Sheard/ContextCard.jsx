@@ -36,7 +36,7 @@ const ContextCard = ({ ContextData, loading }) => {
         {
           loading? null :
           ContextData?.map((contest) => (
-          <div key={contest._id} className="card card-compact bg-base-100 shadow-xl">
+          <div key={contest._id} className="card my-5 card-compact bg-base-100 shadow-xl">
             <figure className="w-full max-h-48">
               <img
                 src={contest.image}
