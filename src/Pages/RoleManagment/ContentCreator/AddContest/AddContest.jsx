@@ -36,7 +36,7 @@ const AddContest = () => {
       Contest: User?.Contest,
     };
     axios
-      .put(`http://localhost:5000/user/${User?.email}`, updateUser)
+      .put(`https://end-game-server-delta.vercel.app/user/${User?.email}`, updateUser)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           // refetch();

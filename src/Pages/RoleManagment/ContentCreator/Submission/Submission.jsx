@@ -27,6 +27,7 @@ const Submission = () => {
       confirmButtonText: "Yes, I'm sure",
     }).then((result) => {
       if (result.isConfirmed) {
+        
         // Update the user Data
         axiosPublic
           .put(

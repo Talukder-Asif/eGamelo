@@ -20,6 +20,7 @@ import Payment from "../Pages/Payment/Payment";
 import ParticipentContest from "../Pages/RoleManagment/User/ParticipantContest/ParticipentContest";
 import WinningContest from "../Pages/RoleManagment/User/WinningContest/WinningContest";
 import Submission from "../Pages/RoleManagment/ContentCreator/Submission/Submission";
+import LeaderBoard from "../Pages/LeaderBoard/LeaderBoard";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,12 @@ export const router = createBrowserRouter([
         path:"/payment/:id",
         element:<PrivateRoute>
           <Payment></Payment>
+        </PrivateRoute>
+      },
+      {
+        path:"/leaderboard",
+        element:<PrivateRoute>
+          <LeaderBoard></LeaderBoard>
         </PrivateRoute>
       },
       {

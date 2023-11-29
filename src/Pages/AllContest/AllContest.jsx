@@ -60,7 +60,7 @@ const AllContest = () => {
   useEffect(() => {
     if (tabIndex === 0) {
       fetch(
-        `http://localhost:5000/usersAllContest/?page=${currentPage}&size=${itemsPerPage}`
+        `https://end-game-server-delta.vercel.app/usersAllContest/?page=${currentPage}&size=${itemsPerPage}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -70,7 +70,7 @@ const AllContest = () => {
     }
     if (tabIndex === 1) {
       fetch(
-        `http://localhost:5000/usersAllContest/?page=${currentPage}&size=${itemsPerPage}&cat=Business Contest`
+        `https://end-game-server-delta.vercel.app/usersAllContest/?page=${currentPage}&size=${itemsPerPage}&cat=Business Contest`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -80,7 +80,7 @@ const AllContest = () => {
     }
     if (tabIndex === 2) {
       fetch(
-        `http://localhost:5000/usersAllContest/?page=${currentPage}&size=${itemsPerPage}&cat=Medical Contest`
+        `https://end-game-server-delta.vercel.app/usersAllContest/?page=${currentPage}&size=${itemsPerPage}&cat=Medical Contest`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -90,7 +90,7 @@ const AllContest = () => {
     }
     if (tabIndex === 3) {
       fetch(
-        `http://localhost:5000/usersAllContest/?page=${currentPage}&size=${itemsPerPage}&cat=Article Writing`
+        `https://end-game-server-delta.vercel.app/usersAllContest/?page=${currentPage}&size=${itemsPerPage}&cat=Article Writing`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -100,7 +100,7 @@ const AllContest = () => {
     }
     if (tabIndex === 4) {
       fetch(
-        `http://localhost:5000/usersAllContest/?page=${currentPage}&size=${itemsPerPage}&cat=Gaming`
+        `https://end-game-server-delta.vercel.app/usersAllContest/?page=${currentPage}&size=${itemsPerPage}&cat=Gaming`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -118,30 +118,6 @@ const AllContest = () => {
     setCurrentPage(0);
   };
 
-  // Search
-  // const handleSearch = (e) => {
-  //   e.preventDefault();
-  //   // const filterFood = foodData.filter(item => item.name.toLowerCase().includes(e.target.search.value.toLowerCase()))
-  //   // setContest(filterFood);
-  //   setsearching("true");
-  //   axios
-  //     .get("http://localhost:5000/usersAllContest/search", {
-  //       params: {
-  //         query: e.target.search.value.toLowerCase(),
-  //       },
-  //     })
-  //     .then((response) => {
-  //       setContest(response?.data);
-  //       if (response?.data.length == 0) {
-  //         setsearchingItem(false);
-  //       } else {
-  //         setsearchingItem(true);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error searching for items:", error);
-  //     });
-  // };
 
   if (loading) {
     return (

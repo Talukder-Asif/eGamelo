@@ -8,48 +8,51 @@ import axios from "axios";
 
 const Profile = () => {
   const [User, isUserLoading] = useUserDetails();
-  const {update} = useContext(AuthContext)
+  const { update } = useContext(AuthContext);
   const totalContest = User?.Contest?.length;
-  const notWin = User?.Contest?.filter(ab => ab?.result !== "Win").length;
-  const win = User?.Contest?.filter(ab => ab?.result === "Win").length;
+  const notWin = User?.Contest?.filter((ab) => ab?.result !== "Win").length;
+  const win = User?.Contest?.filter((ab) => ab?.result === "Win").length;
 
-  
-    const handelUpdate = (e)=>{
-      e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const photo = form.photo.value;
+  const handelUpdate = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#eb0029",
+      cancelButtonColor: "#1b1d4d",
+      confirmButtonText: "Yes, Update Now!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        update(name, photo);
+        const updateData = {
+          name: name,
+          email: User?.email,
+          role: User?.role,
+          contestAdded: User?.contestAdded,
+          win: User?.win,
+          photo: photo,
+          Contest: User.Contest,
+        };
+        axios
+          .put(
+            `https://end-game-server-delta.vercel.app/user/${User?.email}`,
+            updateData
+          )
+          .then((res) => console.log(res.data));
         Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#eb0029",
-          cancelButtonColor: "#1b1d4d",
-          confirmButtonText: "Yes, Update Now!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            update(name, photo);
-            const updateData = {
-              name: name,
-              email: User?.email,
-              role: User?.role,
-              photo: photo,
-              Contest:User.Contest,
-            }
-            axios.put(`http://localhost:5000/user/${User?.email}`, updateData)
-            .then(res=> console.log(res.data));
-            Swal.fire({
-              icon: "success",
-              title: "Update successfully",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-          }});
+          icon: "success",
+          title: "Update successfully",
+          showConfirmButton: false,
+          timer: 2000,
+        });
       }
-
-
-
+    });
+  };
 
   // Pie charts
   const data = [
@@ -82,8 +85,6 @@ const Profile = () => {
       </text>
     );
   };
-
-
 
   if (isUserLoading) {
     return (
@@ -131,7 +132,8 @@ const Profile = () => {
             Email : {User?.email}
           </h3>
           <h3 className="text-lg mb-5 md:text-xl text-gray-900 lg:text-2xl font-bold">
-            Role : <span className="border-b-4 border-b-[#eb0029]">{User?.role}</span>
+            Role :{" "}
+            <span className="border-b-4 border-b-[#eb0029]">{User?.role}</span>
           </h3>
         </div>
       </div>
@@ -139,61 +141,72 @@ const Profile = () => {
         Wining percentage
       </h3>
       <div className="">
-        
-      <PieChart className="m-auto mt-16 mb-5 scale-150" width={190} height={190}>
-        <Pie
-          data={data}
-          cx={80}
-          cy={80}
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={80}
-          fill="#8884d8"
-          dataKey="value"
+        <PieChart
+          className="m-auto mt-16 mb-5 scale-150"
+          width={190}
+          height={190}
         >
-          {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-      <div className="flex justify-evenly">
-        <p className="font-semibold">Total Contest : <span className="border-b-4 border-white">{totalContest}</span></p>
-        <p className="font-semibold border-b-4 border-[#1b1d4d]">Win : <span className="">{win}</span></p>
-        <p className="font-semibold border-b-4 border-[#eb0029]">Not Win : <span className="">{notWin}</span></p>
-      </div>
+          <Pie
+            data={data}
+            cx={80}
+            cy={80}
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius={80}
+            fill="#8884d8"
+            dataKey="value"
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+        <div className="flex justify-evenly">
+          <p className="font-semibold">
+            Total Contest :{" "}
+            <span className="border-b-4 border-white">{totalContest}</span>
+          </p>
+          <p className="font-semibold border-b-4 border-[#1b1d4d]">
+            Win : <span className="">{win}</span>
+          </p>
+          <p className="font-semibold border-b-4 border-[#eb0029]">
+            Not Win : <span className="">{notWin}</span>
+          </p>
+        </div>
       </div>
 
       <h3 className=" my-5 text-3xl md:text-4xl lg:text-5xl text-gray-900  font-bold">
         Update Profile
       </h3>
       <form onSubmit={handelUpdate}>
-              <div className="grid grid-cols-2 gap-5">
-                <div className="">
-              <label > New Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    defaultValue={User.name}
-                    required
-                  />
-                </div>
-                <div className="">
-                <label > New Photo URL</label>
-                  <input
-                    type="text"
-                    name="photo"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    defaultValue={User.photo}
-                    required
-                  />
-                </div>
-              </div>
-              
-                <FormBTN btnTitle={"Update now"}></FormBTN>
+        <div className="grid grid-cols-2 gap-5">
+          <div className="">
+            <label> New Name</label>
+            <input
+              type="text"
+              name="name"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              defaultValue={User.name}
+              required
+            />
+          </div>
+          <div className="">
+            <label> New Photo URL</label>
+            <input
+              type="text"
+              name="photo"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              defaultValue={User.photo}
+              required
+            />
+          </div>
+        </div>
 
-
-            </form>
+        <FormBTN btnTitle={"Update now"}></FormBTN>
+      </form>
     </div>
   );
 };

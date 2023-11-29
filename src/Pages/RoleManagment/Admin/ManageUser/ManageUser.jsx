@@ -8,7 +8,6 @@ const ManageUser = () => {
   const [Users, isUsersLoading, refetch] = useAllUsers();
   const {user} = useContext(AuthContext);
   const updateRole = (User) =>{
-    console.log(User)
 if(User?.role==="User"){    
     Swal.fire({
         title: "Are you sure?",
@@ -23,11 +22,13 @@ if(User?.role==="User"){
           const updateData = {
             name: User?.name,
             email: User?.email,
+            contestAdded:User?.contestAdded,
+            win:User?.win,
             role: 'contestCreator',
             photo: User?.photo,
             Contest:User.Contest,
           }
-          axios.put(`http://localhost:5000/user/${User?.email}`, updateData)
+          axios.put(`https://end-game-server-delta.vercel.app/user/${User?.email}`, updateData)
           .then(res=> {
             if(res.data.modifiedCount > 0){
                 refetch();
@@ -55,11 +56,13 @@ if(User?.role==="contestCreator"){
           const updateData = {
             name: User?.name,
             email: User?.email,
+            contestAdded:User?.contestAdded,
+            win:User?.win,
             role: 'Admin',
             photo: User?.photo,
             Contest:User.Contest,
           }
-          axios.put(`http://localhost:5000/user/${User?.email}`, updateData)
+          axios.put(`https://end-game-server-delta.vercel.app/user/${User?.email}`, updateData)
           .then(res=> {
             if(res.data.modifiedCount > 0){
                 refetch();

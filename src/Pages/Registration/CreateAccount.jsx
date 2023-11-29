@@ -49,10 +49,11 @@ const CreateAccount = () => {
             email: email,
             role: "User",
             contestAdded:0,
+            win:0,
             photo: photo,
             Contest:[]
           }
-          axios.post('http://localhost:5000/user', userData)
+          axios.post('https://end-game-server-delta.vercel.app/user', userData)
           .then(res=> console.log(res.data));
 
 
@@ -86,10 +87,12 @@ const CreateAccount = () => {
           name: user.displayName,
           email: user.email,
           role: "User",
+          contestAdded:0,
+          win:0,
           photo: user.photoURL,
           Contest:[]
         }
-        axios.post('http://localhost:5000/user', userData)
+        axios.post('https://end-game-server-delta.vercel.app/user', userData)
         .then(res=> console.log(res.data));
           Swal.fire({
             icon: "success",

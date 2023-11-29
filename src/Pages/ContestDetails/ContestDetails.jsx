@@ -115,14 +115,14 @@ const winnerDetails = submit?.find(data => data?.userResult === "Win")
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
                           <img
-                            src={winnerDetails.userImg}
+                            src={winnerDetails?.userImg}
                             alt="Avatar Tailwind CSS Component"
                           />
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">{winnerDetails.userName}</div>
-                        <div className="text-sm opacity-50">{winnerDetails.userEmail}</div>
+                        <div className="font-bold">{winnerDetails?.userName}</div>
+                        <div className="text-sm opacity-50">{winnerDetails?.userEmail}</div>
                       </div>
                     </div>
                   </td>

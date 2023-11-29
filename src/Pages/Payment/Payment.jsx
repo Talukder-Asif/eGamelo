@@ -44,10 +44,11 @@ const Payment = () => {
       role: User?.role,
       photo: User?.photo,
       contestAdded: User?.contestAdded,
+      win:User?.win,
       Contest: [...User.Contest, ContestPert],
     };
     axios
-      .put(`http://localhost:5000/user/${User?.email}`, updateUser)
+      .put(`https://end-game-server-delta.vercel.app/user/${User?.email}`, updateUser)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           // refetch();

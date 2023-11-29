@@ -21,7 +21,7 @@ const Login = () => {
         // Signed in 
         const user = userCredential.user;
   
-        axios.post('http://localhost:5000/jwt', user, {withCredentials:true})
+        axios.post('https://end-game-server-delta.vercel.app/jwt', user, {withCredentials:true})
         .then(res=> console.log(res.data))
   
   
@@ -56,18 +56,19 @@ const Login = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        axios.post('http://localhost:5000/jwt', user, {withCredentials:true})
+        axios.post('https://end-game-server-delta.vercel.app/jwt', user, {withCredentials:true})
         .then(res=> console.log(res.data))
 
         const userData = {
           name: user.displayName,
           email: user.email,
           role: "User",
-          contestAdded: 0,
+          contestAdded:0,
+          win:0,
           photo: user.photoURL,
           Contest:[]
         }
-        axios.post('http://localhost:5000/user', userData)
+        axios.post('https://end-game-server-delta.vercel.app/user', userData)
         .then(res=> console.log(res.data));
 
         Swal.fire({

@@ -13,7 +13,7 @@ const DashboardLayout = () => {
           <ul className="menu-horizontal gap-1 flex-wrap justify-center lg:menu">
             <li className="mb-4 ">
               <NavLink
-                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d] hover:text-[#1b1d4d]"
+                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d]hover:text-white lg:hover:text-[#1b1d4d]"
                 to={"/dashboard/profile"}
               >
                 Profile
@@ -26,7 +26,7 @@ const DashboardLayout = () => {
               <>
               <li className="mb-4 ">
               <NavLink
-                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d] hover:text-[#1b1d4d]"
+                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d]hover:text-white lg:hover:text-[#1b1d4d]"
                 to={"/dashboard/users"}
               >
                 Manage User
@@ -34,7 +34,7 @@ const DashboardLayout = () => {
             </li>
             <li className="mb-4 ">
               <NavLink
-                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d] hover:text-[#1b1d4d]"
+                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d]hover:text-white lg:hover:text-[#1b1d4d]"
                 to={"/dashboard/manageContest"}
               >
                 Manage Contest
@@ -52,7 +52,7 @@ const DashboardLayout = () => {
               <>
               <li className="mb-4 ">
               <NavLink
-                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d] hover:text-[#1b1d4d]"
+                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d]hover:text-white lg:hover:text-[#1b1d4d]"
                 to={"/dashboard/addContest"}
               >
                 Add Contest
@@ -60,7 +60,7 @@ const DashboardLayout = () => {
             </li>
             <li className="mb-4 ">
               <NavLink
-                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d] hover:text-[#1b1d4d]"
+                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d] hover:text-white lg:hover:text-[#1b1d4d]"
                 to={"/dashboard/myContest"}
               >
                 My Contests
@@ -74,7 +74,7 @@ const DashboardLayout = () => {
 
             <li className="mb-4 ">
               <NavLink
-                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d] hover:text-[#1b1d4d]"
+                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d]hover:text-white lg:hover:text-[#1b1d4d]"
                 to={"/dashboard/participent"}
               >
                  Participated Contest
@@ -82,7 +82,7 @@ const DashboardLayout = () => {
             </li>
             <li className="mb-4 ">
               <NavLink
-                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d] hover:text-[#1b1d4d]"
+                className="bg-[#1b1d4d] text-sm rounded-2xl px-3  py-1 text-white border-2 lg:text-base border-[#1b1d4d]hover:text-white lg:hover:text-[#1b1d4d]"
                 to={"/dashboard/win"}
               >
                 My Wining Contest

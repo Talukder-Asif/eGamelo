@@ -21,8 +21,8 @@ const navs = (
       </NavLink>
     </li>
     <li>
-      <NavLink to="/blog" className={navStyle}>
-        Blog
+      <NavLink to="/leaderboard" className={navStyle}>
+        Leader board
       </NavLink>
     </li>
   </>
@@ -148,7 +148,7 @@ const NavBar = () => {
             className="items-center justify-between w-1/2 hidden md:flex md:w-auto md:order-1"
             id="mobileManu"
           >
-            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg bg-[#1b1d4d] md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#1b1d4d] ">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg bg-[#1b1d4d]  md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-[#1b1d4d] ">
               {navs}
             </ul>
           </div>

@@ -1,8 +1,16 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Feature
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ - You can create account and make perticipet in exam
+ - Admin can make you content creator and Admin.
+ - Admin have full power to add contest, remove contest, promote user etc.
+ - Contet creator can create content and choice the winner.
+ - User can show dynamic leaderboard, Leaderboard can automaticly update when winner choicen.
+ - If someone create account, he will be a user by default.
+ - User data will safe because JWT has been use in this website.
+
+## Live Link: 
+ - [Firebase](https://endgame-6eef0.web.app/)
+ - [Surge](https://successful-impulse.surge.sh/)
+ - [vercel](https://end-game-theta.vercel.app/)
