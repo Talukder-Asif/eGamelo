@@ -3,9 +3,12 @@ import { AuthContext } from "../../../../Authantication/AuthProvider/AuthProvide
 import Swal from "sweetalert2";
 import useAxios from "../../../../Hooks/useAxios";
 import FormBTN from "../../../../Components/FormBTN";
+import useUserDetails from "../../../../Hooks/useUserDetails";
+import axios from "axios";
 
 const AddContest = () => {
   const { user } = useContext(AuthContext);
+  const [User] = useUserDetails();
   const axiosPublic = useAxios();
   const handelAdd = (e) => {
     e.preventDefault();
@@ -24,6 +27,27 @@ const AddContest = () => {
       participation: 0,
       contestDeadline:form.deadline.value
     };
+    const updateUser = {
+      name: User?.name,
+      email: User?.email,
+      role: User?.role,
+      photo: User?.photo,
+      contestAdded: parseInt(User?.contestAdded) + 1,
+      Contest: User?.Contest,
+    };
+    axios
+      .put(`http://localhost:5000/user/${User?.email}`, updateUser)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          // refetch();
+          // Swal.fire({
+          //     icon: "success",
+          //     title: `${User.name} is an contestCreator Now!`,
+          //     showConfirmButton: false,
+          //     timer: 1500
+          //   });
+        }
+      });
     // console.log(data)
     axiosPublic.post("/addcontest", data).then((res) =>
       res?.data?.acknowledged

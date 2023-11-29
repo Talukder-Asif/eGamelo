@@ -43,6 +43,7 @@ const Payment = () => {
       email: User?.email,
       role: User?.role,
       photo: User?.photo,
+      contestAdded: User?.contestAdded,
       Contest: [...User.Contest, ContestPert],
     };
     axios

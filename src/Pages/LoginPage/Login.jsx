@@ -63,6 +63,7 @@ const Login = () => {
           name: user.displayName,
           email: user.email,
           role: "User",
+          contestAdded: 0,
           photo: user.photoURL,
           Contest:[]
         }

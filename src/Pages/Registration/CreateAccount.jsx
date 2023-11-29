@@ -48,6 +48,7 @@ const CreateAccount = () => {
             name: name,
             email: email,
             role: "User",
+            contestAdded:0,
             photo: photo,
             Contest:[]
           }
