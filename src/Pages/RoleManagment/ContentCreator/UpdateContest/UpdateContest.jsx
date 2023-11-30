@@ -125,29 +125,7 @@ const UpdateContest = () => {
                   required
                 />
               </div>
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Contest Description
-                </label>
-                <textarea
-                  name="details"
-                  rows="4"
-                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  defaultValue={contest.details}
-                ></textarea>
-              </div>
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Task Submission text instruction
-                </label>
-                <textarea
-                  name="instruction"
-                  rows="4"
-                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  defaultValue={contest.instruction}
-                ></textarea>
-              </div>
-  
+              
               <div>
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                   Created By
@@ -197,6 +175,29 @@ const UpdateContest = () => {
                   required
                 />
               </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Contest Description
+                </label>
+                <textarea
+                  name="details"
+                  rows="4"
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  defaultValue={contest.details}
+                ></textarea>
+              </div>
+              <div>
+                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Task Submission text instruction
+                </label>
+                <input type="url"
+                  name="instruction"
+                  rows="4"
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  defaultValue={contest.instruction}
+                ></input>
+              </div>
+  
             </div>
   
             <FormBTN btnTitle={'Update this Contest'}></FormBTN>

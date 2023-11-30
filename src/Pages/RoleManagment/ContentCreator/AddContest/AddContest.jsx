@@ -25,7 +25,7 @@ const AddContest = () => {
       tag: form.tag.value,
       status: "Pending",
       participation: 0,
-      contestDeadline:form.deadline.value
+      contestDeadline: form.deadline.value,
     };
     const updateUser = {
       name: User?.name,
@@ -36,7 +36,10 @@ const AddContest = () => {
       Contest: User?.Contest,
     };
     axios
-      .put(`https://end-game-server-delta.vercel.app/user/${User?.email}`, updateUser)
+      .put(
+        `https://end-game-server-delta.vercel.app/user/${User?.email}`,
+        updateUser
+      )
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           // refetch();
@@ -121,28 +124,6 @@ const AddContest = () => {
                 required
               />
             </div>
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Contest Description
-              </label>
-              <textarea
-                name="details"
-                rows="4"
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Write contest details here..."
-              ></textarea>
-            </div>
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Task Submission text instruction
-              </label>
-              <textarea
-                name="instruction"
-                rows="4"
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="How student's can submit there answer..."
-              ></textarea>
-            </div>
 
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -172,9 +153,13 @@ const AddContest = () => {
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Contest Type/Tags
+                Contest Type/Tags
               </label>
-              <select name="tag" defaultValue className="select select-error w-full">
+              <select
+                name="tag"
+                defaultValue
+                className="select select-error w-full"
+              >
                 <option disabled value>
                   What tag is the best for your contest?
                 </option>
@@ -186,7 +171,7 @@ const AddContest = () => {
             </div>
             <div>
               <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-              Contest Deadline
+                Contest Deadline
               </label>
               <input
                 type="date"
@@ -195,9 +180,34 @@ const AddContest = () => {
                 required
               />
             </div>
+            <div>
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Contest Description
+              </label>
+              <textarea
+                name="details"
+                rows="4"
+                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Write contest details here..."
+              ></textarea>
+            </div>
+
+            <div>
+              <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Task Submission text instruction
+              </label>
+              <input
+                type="url"
+                name="instruction"
+                rows="4"
+                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Google Form Link Only..."
+                required
+              ></input>
+            </div>
           </div>
 
-          <FormBTN btnTitle={'Add this Contest'}></FormBTN>
+          <FormBTN btnTitle={"Add this Contest"}></FormBTN>
         </form>
       </div>
     </div>

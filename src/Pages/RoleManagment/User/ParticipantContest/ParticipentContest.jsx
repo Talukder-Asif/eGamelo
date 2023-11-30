@@ -1,16 +1,9 @@
-import Swal from "sweetalert2";
 import useUserDetails from "../../../../Hooks/useUserDetails";
 
 const ParticipentContest = () => {
   const [User, isUserLoading] = useUserDetails();
-  const mySubmit = User.Contest.filter((a) => a.result !== "Win");
-  const handelParticipate = (data) => {
-    Swal.fire({
-      title: "Contest Links",
-      text: data,
-      icon: "info",
-    });
-  };
+  const mySubmits = User.Contest.filter((a) => a.result !== "Win");
+  const mySubmit = mySubmits.reverse();
   if (isUserLoading) {
     return (
       <div className="grid min-h-[400px] content-center justify-center">
@@ -87,16 +80,14 @@ const ParticipentContest = () => {
               <th className="text-right">
                 <div className=" grid md:inline">
                   {
-                    Date.parse(contest?.contestDeadline) - Date.now() > 0 ? <button
-                    onClick={() => handelParticipate(contest?.instruction)}
+                    Date.parse(contest?.contestDeadline) - Date.now() > 0 ? <a href={contest?.instruction}><button
                     className={
                       "btn border-2px border-[#1b1d4d] px-3 py-1 bg-[#1b1d4d] text-white btn-xs hover:text-[#1b1d4d] hover:border-[#1b1d4d] hover:bg-white"
                     }
                   >
                     Participate
-                  </button>:
+                  </button></a>:
                   <button
-                    onClick={() => handelParticipate(contest?.instruction)}
                     className={
                       "btn border-2px btn-disabled border-[#1b1d4d] px-3 py-1 bg-[#1b1d4d] text-white btn-xs hover:text-[#1b1d4d] hover:border-[#1b1d4d] hover:bg-white"
                     }
